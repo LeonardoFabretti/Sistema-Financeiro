@@ -67,12 +67,12 @@ const Caixinhas: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
             Minhas Caixinhas
           </h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">
             Total em caixinhas: <span className="font-semibold">{formatarMoeda(totalSaldos)}</span>
           </p>
         </div>
@@ -85,30 +85,30 @@ const Caixinhas: React.FC = () => {
             setCor('#3b82f6');
             setPercentual('10');
           }}
-          className="flex items-center gap-2 bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-blue-600 transition-all"
+          className="w-full sm:w-auto flex items-center justify-center gap-2 bg-blue-500 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold shadow-lg hover:bg-blue-600 transition-all active:scale-95"
         >
-          <Plus size={20} />
+          <Plus size={18} className="sm:w-5 sm:h-5" />
           Nova Caixinha
         </button>
       </div>
       
       {/* Formulário de Nova/Editar Caixinha */}
       {mostrarForm && (
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6">
+          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4">
             {editando ? 'Editar Caixinha' : 'Nova Caixinha'}
           </h3>
           
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Nome da Caixinha
               </label>
               <input
                 type="text"
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                 placeholder="Ex: Viagem, Investimentos, Lazer..."
                 required
               />
@@ -116,7 +116,7 @@ const Caixinhas: React.FC = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Cor
                 </label>
                 <div className="grid grid-cols-5 gap-2">
@@ -125,7 +125,7 @@ const Caixinhas: React.FC = () => {
                       key={corOpcao}
                       type="button"
                       onClick={() => setCor(corOpcao)}
-                      className={`w-full h-12 rounded-lg transition-all ${
+                      className={`w-full h-10 sm:h-12 rounded-lg transition-all active:scale-95 ${
                         cor === corOpcao ? 'ring-4 ring-blue-500 scale-110' : ''
                       }`}
                       style={{ backgroundColor: corOpcao }}
@@ -135,17 +135,17 @@ const Caixinhas: React.FC = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Percentual Padrão (%)
                 </label>
                 <div className="relative">
-                  <Percent className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                  <Percent className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
                   <input
                     type="number"
                     step="0.1"
                     value={percentual}
                     onChange={(e) => setPercentual(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                    className="w-full pl-10 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                     placeholder="10"
                     required
                   />
@@ -156,10 +156,10 @@ const Caixinhas: React.FC = () => {
               </div>
             </div>
             
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <button
                 type="submit"
-                className="flex-1 bg-blue-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-600 transition-all"
+                className="flex-1 bg-blue-500 text-white py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold hover:bg-blue-600 transition-all active:scale-95 text-sm sm:text-base"
               >
                 {editando ? 'Atualizar' : 'Criar'} Caixinha
               </button>
@@ -169,7 +169,7 @@ const Caixinhas: React.FC = () => {
                   setMostrarForm(false);
                   setEditando(null);
                 }}
-                className="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all"
+                className="px-4 sm:px-6 py-2.5 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all active:scale-95 text-sm sm:text-base"
               >
                 Cancelar
               </button>
@@ -195,7 +195,7 @@ const Caixinhas: React.FC = () => {
             >
               {/* Header da Caixinha */}
               <div 
-                className="p-6 text-white"
+                className="p-4 sm:p-6 text-white"
                 style={{ backgroundColor: caixinha.cor }}
               >
                 <div className="flex items-start justify-between mb-4">

@@ -58,41 +58,41 @@ const AppContent: React.FC = () => {
   return (
     <div className="relative">
       {/* Botões Flutuantes */}
-      <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 flex flex-col gap-2 sm:gap-3 z-50">
+      <div className="fixed bottom-3 sm:bottom-6 right-3 sm:right-6 flex flex-col gap-2 z-50">
         {/* Tema */}
         <button
           onClick={alternarTema}
-          className="bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 p-3 sm:p-4 rounded-full shadow-2xl hover:scale-110 transition-transform"
+          className="bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 p-2.5 sm:p-4 rounded-full shadow-2xl hover:scale-110 transition-transform active:scale-95"
           title={tema === 'claro' ? 'Modo Escuro' : 'Modo Claro'}
         >
-          {tema === 'claro' ? <Moon size={20} className="sm:w-6 sm:h-6" /> : <Sun size={20} className="sm:w-6 sm:h-6" />}
+          {tema === 'claro' ? <Moon size={18} className="sm:w-6 sm:h-6" /> : <Sun size={18} className="sm:w-6 sm:h-6" />}
         </button>
         
         {/* Backup */}
         <button
           onClick={exportarDados}
-          className="bg-green-600 text-white p-3 sm:p-4 rounded-full shadow-2xl hover:scale-110 transition-transform"
+          className="bg-green-600 text-white p-2.5 sm:p-4 rounded-full shadow-2xl hover:scale-110 transition-transform active:scale-95"
           title="Fazer Backup"
         >
-          <Download size={20} className="sm:w-6 sm:h-6" />
+          <Download size={18} className="sm:w-6 sm:h-6" />
         </button>
         
         {/* Importar */}
         <button
           onClick={handleImportar}
-          className="bg-blue-600 text-white p-3 sm:p-4 rounded-full shadow-2xl hover:scale-110 transition-transform"
+          className="bg-blue-600 text-white p-2.5 sm:p-4 rounded-full shadow-2xl hover:scale-110 transition-transform active:scale-95"
           title="Importar Backup"
         >
-          <Upload size={20} className="sm:w-6 sm:h-6" />
+          <Upload size={18} className="sm:w-6 sm:h-6" />
         </button>
         
         {/* Limpar */}
         <button
           onClick={handleLimpar}
-          className="bg-red-600 text-white p-3 sm:p-4 rounded-full shadow-2xl hover:scale-110 transition-transform"
+          className="bg-red-600 text-white p-2.5 sm:p-4 rounded-full shadow-2xl hover:scale-110 transition-transform active:scale-95"
           title="Limpar Dados"
         >
-          <Trash2 size={20} className="sm:w-6 sm:h-6" />
+          <Trash2 size={18} className="sm:w-6 sm:h-6" />
         </button>
       </div>
       

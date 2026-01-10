@@ -42,27 +42,28 @@ const Historico: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Navegação entre Meses */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-        <div className="flex items-center justify-between">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0">
           <button
             onClick={handleMesAnterior}
             disabled={indiceMes === 0}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+            className={`w-full sm:w-auto flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-lg font-medium transition-all text-sm sm:text-base ${
               indiceMes === 0
                 ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed'
-                : 'bg-blue-500 text-white hover:bg-blue-600'
+                : 'bg-blue-500 text-white hover:bg-blue-600 active:scale-95'
             }`}
           >
-            <ChevronLeft size={20} />
-            Mês Anterior
+            <ChevronLeft size={18} className="sm:w-5 sm:h-5" />
+            <span className="hidden sm:inline">Mês Anterior</span>
+            <span className="sm:hidden">Anterior</span>
           </button>
           
           <div className="text-center">
             <div className="flex items-center gap-2 justify-center text-gray-500 dark:text-gray-400 mb-1">
-              <Calendar size={18} />
-              <span className="text-sm">Visualizando</span>
+              <Calendar size={16} className="sm:w-[18px] sm:h-[18px]" />
+              <span className="text-xs sm:text-sm">Visualizando</span>
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
               {obterNomeMes(mesAtualVisualizado.mes)} {mesAtualVisualizado.ano}
             </h2>
           </div>
@@ -70,14 +71,15 @@ const Historico: React.FC = () => {
           <button
             onClick={handleProximoMes}
             disabled={indiceMes === dados.meses.length - 1}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+            className={`w-full sm:w-auto flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-lg font-medium transition-all text-sm sm:text-base ${
               indiceMes === dados.meses.length - 1
                 ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed'
-                : 'bg-blue-500 text-white hover:bg-blue-600'
+                : 'bg-blue-500 text-white hover:bg-blue-600 active:scale-95'
             }`}
           >
-            Próximo Mês
-            <ChevronRight size={20} />
+            <span className="hidden sm:inline">Próximo Mês</span>
+            <span className="sm:hidden">Próximo</span>
+            <ChevronRight size={18} className="sm:w-5 sm:h-5" />
           </button>
         </div>
         
@@ -85,10 +87,11 @@ const Historico: React.FC = () => {
         <div className="mt-4 flex justify-end">
           <button
             onClick={exportarRelatorioMensal}
-            className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg font-medium hover:bg-green-600 transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-green-500 text-white rounded-lg font-medium hover:bg-green-600 transition-all active:scale-95 text-sm sm:text-base"
           >
-            <Download size={18} />
-            Exportar Relatório CSV
+            <Download size={16} className="sm:w-[18px] sm:h-[18px]" />
+            <span className="hidden sm:inline">Exportar Relatório CSV</span>
+            <span className="sm:hidden">Exportar CSV</span>
           </button>
         </div>
       </div>

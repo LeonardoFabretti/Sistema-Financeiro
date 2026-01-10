@@ -24,14 +24,14 @@ const Dashboard: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       {/* Header */}
-      <header className="bg-white dark:bg-gray-800 shadow-lg">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <header className="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+              <h1 className="text-xl sm:text-3xl font-bold text-gray-900 dark:text-white">
                 💰 Sistema Financeiro
               </h1>
-              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5 sm:mt-1">
                 Controle completo das suas finanças
               </p>
             </div>
@@ -49,9 +49,9 @@ const Dashboard: React.FC = () => {
       </header>
       
       {/* Navigation Tabs */}
-      <div className="bg-white dark:bg-gray-800 shadow">
+      <div className="bg-white dark:bg-gray-800 shadow sticky top-[64px] sm:top-[88px] z-30">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-          <nav className="flex space-x-2 sm:space-x-8 overflow-x-auto scrollbar-hide">
+          <nav className="flex space-x-1 sm:space-x-8 overflow-x-auto scrollbar-hide -mx-2 px-2">
             {[
               { id: 'resumo', nome: 'Resumo', icone: Calendar },
               { id: 'renda', nome: 'Renda', icone: TrendingUp },
@@ -66,16 +66,15 @@ const Dashboard: React.FC = () => {
                   key={aba.id}
                   onClick={() => setAbaAtiva(aba.id as any)}
                   className={`
-                    flex items-center gap-1 sm:gap-2 py-3 sm:py-4 px-2 sm:px-1 border-b-2 font-medium text-xs sm:text-sm whitespace-nowrap
+                    flex items-center gap-1.5 sm:gap-2 py-2.5 sm:py-4 px-3 sm:px-1 border-b-2 font-medium text-[11px] sm:text-sm whitespace-nowrap transition-all
                     ${abaAtiva === aba.id
                       ? 'border-blue-500 text-blue-600 dark:text-blue-400'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
                     }
                   `}
                 >
-                  <Icone size={16} className="sm:w-[18px] sm:h-[18px]" />
-                  <span className="hidden sm:inline">{aba.nome}</span>
-                  <span className="sm:hidden">{aba.nome.substring(0, 3)}</span>
+                  <Icone size={14} className="sm:w-[18px] sm:h-[18px]" />
+                  <span>{aba.nome}</span>
                 </button>
               );
             })}
@@ -84,7 +83,7 @@ const Dashboard: React.FC = () => {
       </div>
       
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 pb-20 sm:pb-8">
         {abaAtiva === 'resumo' && (
           <div className="space-y-6">
             {/* Cards de Resumo */}
