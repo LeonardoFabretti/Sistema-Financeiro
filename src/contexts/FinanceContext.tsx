@@ -10,6 +10,8 @@ import {
   Configuracoes
 } from '../types';
 import { gerarId, obterChaveMesAtual } from '../utils/helpers';
+import { SecureStorage } from '../services/secureStorage';
+import { SchemaValidator } from '../utils/schemaValidator';
 
 // Contexto do sistema financeiro
 interface FinanceContextType {
@@ -116,17 +118,25 @@ const criarDadosIniciais = (): DadosSistema => {
 
 export const FinanceProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [dados, setDados] = useState<DadosSistema>(() => {
-    // Carregar dados do localStorage
-    const dadosSalvos = localStorage.getItem('sistemaFinanceiro');
-    if (dadosSalvos) {
-      return JSON.parse(dadosSalvos);
+    // CORREÇÃO: Carregar dados do SecureStorage criptografado
+    try {
+      const dadosSalvos = SecureStorage.getItem<DadosSistema>('sistemaFinanceiro');
+      if (dadosSalvos) {
+        return dadosSalvos;
+      }
+    } catch (error) {
+      console.error('Erro ao carregar dados:', error);
     }
     return criarDadosIniciais();
   });
   
-  // Salvar dados no localStorage sempre que houver mudanças
+  // CORREÇÃO: Salvar dados no SecureStorage criptografado
   useEffect(() => {
-    localStorage.setItem('sistemaFinanceiro', JSON.stringify(dados));
+    try {
+      SecureStorage.setItem('sistemaFinanceiro', dados);
+    } catch (error) {
+      console.error('Erro ao salvar dados:', error);
+    }
   }, [dados]);
   
   // Verificar e criar novo mês automaticamente
@@ -461,9 +471,17 @@ export const FinanceProvider: React.FC<{ children: ReactNode }> = ({ children })
     URL.revokeObjectURL(url);
   };
   
-  // Importar dados
+  // CORREÇÃO: Importar dados com validação de schema
   const importarDados = (novosDados: DadosSistema) => {
-    setDados(novosDados);
+    // Validar estrutura dos dados
+    const validation = SchemaValidator.validateSystemData(novosDados);
+    if (!validation.valid) {
+      throw new Error(`Dados inválidos: ${validation.errors.join(', ')}`);
+    }
+    
+    // Sanitizar dados antes de importar
+    const dadosSanitizados = SchemaValidator.sanitizeData(novosDados);
+    setDados(dadosSanitizados);
   };
   
   // Limpar dados

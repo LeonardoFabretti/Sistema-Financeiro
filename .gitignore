@@ -22,3 +22,103 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+
+# Backend
+backend/node_modules
+backend/dist
+backend/.env
+
+# Database
+*.sqlite
+*.db
+
+# Railway
+.railway
+
+# Vercel
+.vercel
+
+# Arquivos de ambiente e configuração sensível
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+.env.*
+
+# Dados sensíveis e backups
+*.backup
+*.bak
+*.old
+*.tmp
+*.temp
+backups/
+backup/
+dados_usuario/
+user_data/
+
+# Certificados e chaves privadas
+*.key
+*.pem
+*.p12
+*.pfx
+*.cer
+*.crt
+*.der
+certificates/
+certs/
+keys/
+secrets/
+
+# Arquivos de dados de teste
+test-data/
+*.test.json
+*.mock.json
+
+# Arquivos de usuário (localStorage simulado)
+localStorage/
+user-storage/
+*.user.json
+
+# Arquivos de auditoria e logs sensíveis (manter apenas exemplos)
+audit_logs_*.json
+secure_users_*.json
+sistema_backups_*.json
+
+# Cache e arquivos temporários
+.cache/
+*.cache
+.tmp/
+tmp/
+temp/
+
+# Arquivos de banco de dados local
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# Arquivos grandes
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Arquivos do sistema operacional
+Thumbs.db
+Desktop.ini
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Histórico de comandos e configurações locais
+.history/
+.local/
+*.local.json
